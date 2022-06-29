@@ -1,3 +1,9 @@
+// Defines initial score of player and computer
+
+let playerScore = 0
+let computerScore = 0
+
+
 // Randomly returns either ‘Rock’, ‘Paper’ or ‘Scissors’ as the computer's selection.
 
 function computerPlay() {
@@ -6,32 +12,53 @@ function computerPlay() {
 }
 
 // This function plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - 
-// It will then return a string that declares the winner of the round like so: "You lose! Paper beats Rock"
+// It will then return a string that declares the winner of the round like so: "You lose! Paper beats Rock".
 
 function playRound(playerSelection, computerSelection) {
-    let result = "";
-
     if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        result = ("You win! " + playerSelection + " beats " + computerSelection + "!");
+        playerScore++
+        return "You win! " + playerSelection + " beats " + computerSelection + "!"
     
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        result = ("You win! " + playerSelection + " beats " + computerSelection + "!");
+        playerScore++
+        return "You win! " + playerSelection + " beats " + computerSelection + "!"
     
     } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        result = ("You win! " + playerSelection + " beats " + computerSelection + "!");
+        playerScore++
+        return "You win! " + playerSelection + " beats " + computerSelection + "!"
 
     } else if (playerSelection === computerSelection) {
-        result = ("You both chose " + playerSelection + "! " + "It's a tie!");
+        return "You both chose " + playerSelection + "! " + "It's a tie!"
 
     } else {
-        result = ("You lose! " + computerSelection + " beats " + playerSelection + "!");
+        computerScore++
+        return "You lose! " + computerSelection + " beats " + playerSelection + "!"
     }
-
-    return result;
 }
 
-let playerSelection = "Paper";
-let computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+// This function plays a 5 round game that keeps score and reports a winner, loser, or tie at the end.
 
-// Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Do you choose rock, paper, or scissors?")
+        let computerSelection = computerPlay()
+        playRound(playerSelection, computerSelection)
+        
+        console.log(playRound(playerSelection, computerSelection));
+    }
+
+    // if-else statement within the game() function that determines who is the winner of the 5 round game or if it was a tie.
+    // It then logs the result to the console like so: "Result: You beat the computer! Congratulations!"
+
+    if (playerScore > computerScore) {
+        console.log("Result: You beat the computer! Congratulations!")
+    
+    } else if (computerScore > playerScore) {
+        console.log("Result: You were bested by the computer! Better luck next time!")
+
+    } else {
+        console.log("Result: It's a tie!")
+    }
+}
+
+game();

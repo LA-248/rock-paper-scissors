@@ -3,7 +3,6 @@
 let playerScore = 0
 let computerScore = 0
 
-
 // Randomly returns either ‘Rock’, ‘Paper’ or ‘Scissors’ as the computer's selection.
 
 function computerPlay() {
@@ -11,8 +10,9 @@ function computerPlay() {
     return choice[Math.floor(Math.random() * 3)];
 }
 
-// This function plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - 
+// This function plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection
 // It will then return a string that declares the winner of the round like so: "You lose! Paper beats Rock".
+// It will also increment the playerScore or computerScore by one (playerScore++ / computerScore++), depending on who won the round.
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "Rock" && computerSelection === "Scissors") {
@@ -36,7 +36,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// This function plays a 5 round game that keeps score and reports a winner, loser, or tie at the end.
+// This function plays a 5 round game by calling the playRound function inside of it. It then keeps score and reports a winner, loser, or tie at the end.
 
 function game() {
     for (let i = 0; i < 5; i++) {

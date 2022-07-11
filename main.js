@@ -17,22 +17,22 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "Rock" && computerSelection === "Scissors") {
         playerScore++
-        return "You win! " + playerSelection + " beats " + computerSelection + "!"
+        return "You win! " + playerSelection + " beats " + computerSelection + "!";
     
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
         playerScore++
-        return "You win! " + playerSelection + " beats " + computerSelection + "!"
+        return "You win! " + playerSelection + " beats " + computerSelection + "!";
     
     } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
         playerScore++
-        return "You win! " + playerSelection + " beats " + computerSelection + "!"
+        return "You win! " + playerSelection + " beats " + computerSelection + "!";
 
     } else if (playerSelection === computerSelection) {
         return "You both chose " + playerSelection + "! " + "It's a tie!"
 
     } else {
         computerScore++
-        return "You lose! " + computerSelection + " beats " + playerSelection + "!"
+        return "You lose! " + computerSelection + " beats " + playerSelection + "!";
     }
 }
 

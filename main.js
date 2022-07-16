@@ -1,10 +1,8 @@
 // Defines initial score of player and computer
-
 let playerScore = 0
 let computerScore = 0
 
 // Accessing elements from the DOM
-
 let rockButton = document.querySelector('.rock');
 let paperButton = document.querySelector('.paper');
 let scissorsButton = document.querySelector('.scissors');

@@ -1,4 +1,5 @@
 // Defines initial score of player and computer
+//
 
 let playerScore = 0
 let computerScore = 0
@@ -42,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "Paper" && computerSelection === "Rock")) {
 
         playerScore++;
-        userScore.textContent = "Player score: " + playerScore; 
+        userScore.textContent = "Player score: " + playerScore;
         compScore.textContent = "Computer score: " + computerScore;
         roundResult.textContent = "You win! " + playerSelection + " beats " + computerSelection + "!";
 

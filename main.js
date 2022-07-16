@@ -1,5 +1,4 @@
 // Defines initial score of player and computer
-//
 
 let playerScore = 0
 let computerScore = 0

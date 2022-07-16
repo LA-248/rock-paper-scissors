@@ -5,9 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="main.js" defer></script>
 </head>
 <body>
-    
+  <div class="container">
+    <div class="heading">
+      <h1>Rock, Paper, Scissors</h1>
+      <h2>First to 5 points wins!</h2>
+    </div>
+
+    <hr>
+
+    <div class="score-dashboard">
+      <div id="userScore">Player score: 0</div>
+      <div id="compScore">Computer score: 0</div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-image">
+          <img src="images/rock.png" class="rock" data-button="Rock">
+        </div>
+        <div class="card-text">Rock</div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="images/paper.png" class="paper" data-button="Paper">
+        </div>
+        <div class="card-text">Paper</div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="images/scissors.png" class="scissors" data-button="Scissors">
+        </div>
+        <div class="card-text">Scissors</div>
+      </div>
+    </div>
+
+    <div class="game-result">
+      <div id="roundResult"></div>
+      <div id="finalResult"></div>
+    </div>
+  </div>
 </body>
 </html>

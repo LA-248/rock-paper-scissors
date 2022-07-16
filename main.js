@@ -3,62 +3,84 @@
 let playerScore = 0
 let computerScore = 0
 
-// Randomly returns either ‘Rock’, ‘Paper’ or ‘Scissors’ as the computer's selection.
+// Accessing elements from the DOM
 
+let rockButton = document.querySelector('.rock');
+let paperButton = document.querySelector('.paper');
+let scissorsButton = document.querySelector('.scissors');
+let roundResult = document.querySelector('#roundResult');
+let finalResult = document.querySelector('#finalResult');
+let userScore = document.querySelector('#userScore');
+let compScore = document.querySelector('#compScore');
+
+// Getting a reference to the container div that already exists in the HTML
+const container = document.querySelector('.container');
+
+// Creating a button to refresh the page
+const newGame = document.createElement('button');
+newGame.textContent = "Play Again";
+newGame.setAttribute("id", "refresh");
+
+// Function to refresh the page
+function refreshPage() {
+    window.location.reload(true);
+}
+
+// Randomly returns either ‘Rock’, ‘Paper’ or ‘Scissors’ as the computer's selection.
 function computerPlay() {
     let choice = ["Rock", "Paper", "Scissors"];
-    return choice[Math.floor(Math.random() * 3)];
+    return choice[Math.floor(Math.random() * choice.length)];
 }
 
-// This function plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection
-// It will then return a string that declares the winner of the round like so: "You lose! Paper beats Rock".
-// It will also increment the playerScore or computerScore by one (playerScore++ / computerScore++), depending on who won the round.
-
+// This function plays a game of Rock Paper Scissors
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        playerScore++
-        return "You win! " + playerSelection + " beats " + computerSelection + "!";
-    
-    } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        playerScore++
-        return "You win! " + playerSelection + " beats " + computerSelection + "!";
-    
-    } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        playerScore++
-        return "You win! " + playerSelection + " beats " + computerSelection + "!";
+    playerSelection = this.dataset.button;
+    computerSelection = computerPlay();
+
+    if ((playerSelection === "Rock" && computerSelection === "Scissors") ||
+        (playerSelection === "Scissors" && computerSelection === "Paper") ||
+        (playerSelection === "Paper" && computerSelection === "Rock")) {
+
+        playerScore++;
+        userScore.textContent = "Player score: " + playerScore; 
+        compScore.textContent = "Computer score: " + computerScore;
+        roundResult.textContent = "You win! " + playerSelection + " beats " + computerSelection + "!";
+
+        if (playerScore === 5) {
+          roundResult.textContent = "You win! " + playerSelection + " beats " + computerSelection + "!";
+          finalResult.textContent = "Congratulations! You beat the computer!";
+          rockButton.removeEventListener('click', playRound);
+          paperButton.removeEventListener('click', playRound);
+          scissorsButton.removeEventListener('click', playRound);
+          container.appendChild(newGame);
+        }
 
     } else if (playerSelection === computerSelection) {
-        return "You both chose " + playerSelection + "! " + "It's a tie!"
+        userScore.textContent = "Player score: " + playerScore;
+        compScore.textContent = "Computer score: " + computerScore;
+        roundResult.textContent = "You both chose " + playerSelection + "! " + "It's a tie!";
 
     } else {
-        computerScore++
-        return "You lose! " + computerSelection + " beats " + playerSelection + "!";
+        computerScore++;
+        userScore.textContent = "Player score: " + playerScore;
+        compScore.textContent = "Computer score: " + computerScore;
+        roundResult.textContent = "You lose! " + computerSelection + " beats " + playerSelection + "!";
+
+        if (computerScore === 5) {
+          roundResult.textContent = "You lose! " + computerSelection + " beats " + playerSelection + "!";
+          finalResult.textContent = "The computer got the best of you! Better luck next time.";
+          rockButton.removeEventListener('click', playRound);
+          paperButton.removeEventListener('click', playRound);
+          scissorsButton.removeEventListener('click', playRound);
+          container.appendChild(newGame);
+        }
     }
 }
 
-// This function plays a 5 round game by calling the playRound function inside of it. It then keeps score and reports a winner, loser, or tie at the end.
+// Button event listener to play the game and register a selection
+rockButton.addEventListener('click', playRound);
+paperButton.addEventListener('click', playRound);
+scissorsButton.addEventListener('click', playRound);
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Do you choose rock, paper, or scissors?")
-        let computerSelection = computerPlay()
-        playRound(playerSelection, computerSelection)
-        
-        console.log(playRound(playerSelection, computerSelection));
-    }
-
-    // if-else statement within the game() function that determines who is the winner of the 5 round game or if it was a tie.
-    // It then logs the result to the console like so: "Result: You beat the computer! Congratulations!"
-
-    if (playerScore > computerScore) {
-        console.log("Result: You beat the computer! Congratulations!")
-    
-    } else if (computerScore > playerScore) {
-        console.log("Result: You were bested by the computer! Better luck next time!")
-
-    } else {
-        console.log("Result: It's a tie!")
-    }
-}
-
-game();
+// Event listener to refresh the page on click of "Play Again" button
+newGame.addEventListener('click', refreshPage);
